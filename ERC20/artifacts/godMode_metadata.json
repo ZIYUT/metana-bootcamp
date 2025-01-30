@@ -204,6 +204,45 @@
 				"type": "event"
 			},
 			{
+				"inputs": [],
+				"name": "ETH_PER_THOUSAND_TOKENS",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "TOKENS_PER_ETH",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "add",
+						"type": "address"
+					}
+				],
+				"name": "addToSanctionList",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -338,6 +377,13 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "mintTokens",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -382,8 +428,34 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "add",
+						"type": "address"
+					}
+				],
+				"name": "removeFromSanctionList",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "sellBack",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -412,6 +484,29 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transaction",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -476,6 +571,13 @@
 					}
 				],
 				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdrawETH",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -603,7 +705,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"ERC20_contracts/god-mode.sol": "godMode"
+			"ERC20/smartContract.sol": "godMode"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -665,12 +767,12 @@
 				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
 			]
 		},
-		"ERC20_contracts/god-mode.sol": {
-			"keccak256": "0xa497f317e0e3440da9ac01b1f3016ea90b07faa9f478b6dce3c26dbff2cd2da6",
+		"ERC20/smartContract.sol": {
+			"keccak256": "0x95994e44d6e373faf89c04683274525a4d7fd49104a2bbe7a12a3f22ad22e240",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://cd68ceff1122147b4875c6b39d18e538510e8f7d53baef331b41cec388adb179",
-				"dweb:/ipfs/QmadPqh3fA1DERznphFaW2gyWZ9nZodPCyjx5xuFVq361A"
+				"bzz-raw://ad51510ce368a4b8092b1f86902a8f14baee820dd041b6017156e0d8512c09ff",
+				"dweb:/ipfs/QmbMDcUfrykgmjY3Ume2hCasb5CDP8r9iWcgb5mq6nMcg2"
 			]
 		}
 	},

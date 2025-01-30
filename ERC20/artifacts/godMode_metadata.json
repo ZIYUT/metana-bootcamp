@@ -768,11 +768,11 @@
 			]
 		},
 		"ERC20/smartContract.sol": {
-			"keccak256": "0x95994e44d6e373faf89c04683274525a4d7fd49104a2bbe7a12a3f22ad22e240",
+			"keccak256": "0xa47aff6e9a3d8f6c3f766556e4b04192046253795332fa279510c88e05084e80",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ad51510ce368a4b8092b1f86902a8f14baee820dd041b6017156e0d8512c09ff",
-				"dweb:/ipfs/QmbMDcUfrykgmjY3Ume2hCasb5CDP8r9iWcgb5mq6nMcg2"
+				"bzz-raw://59c53643789afbd84143fc63e10916685357618e3154817f66049123cd14486d",
+				"dweb:/ipfs/QmUtAfwwSv71SFgWtNCF4ZPrWe19W9z5FU9Y2HF8HspWLE"
 			]
 		}
 	},

@@ -88,7 +88,7 @@ contract godMode is ERC20, Ownable {
 
     function sellBack(uint256 amount) public {
         // Allow users to partial sell back their token with the rate of 0.5 ether for every 1000 tokens.
-        uint256 sellBackETH = (amount * ETH_PER_THOUSAND_TOKENS) / TOKENS_PER_ETH;
+        uint256 sellBackETH = (amount * ETH_PER_THOUSAND_TOKENS * 10**18) / TOKENS_PER_ETH;
         require(address(this).balance >= sellBackETH, "ETH is not enough");
         _transfer(msg.sender, address(this), amount);
           payable(msg.sender).transfer(sellBackETH);

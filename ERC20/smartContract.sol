@@ -4,14 +4,14 @@ pragma solidity ^0.8.26;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract godMode is ERC20, Ownable {
+contract godMode is ERC20 {
     address public god;
     mapping(address => bool) private sanctionList; // Create a map to save the sanctioned addresses
     uint256 public constant TOKENS_PER_ETH = 1000 * 10**18; // 1000 tokens for each paid ether
     uint256 public constant ETH_PER_THOUSAND_TOKENS = 0.5 ether; // 0.5 ether for 1000 tokens
 
     constructor(string memory name, string memory symbol, address godAddress) 
-    ERC20(name, symbol) Ownable(msg.sender){
+    ERC20(name, symbol) {
         god = godAddress;
     }
     modifier onlyGod() {
@@ -93,5 +93,4 @@ contract godMode is ERC20, Ownable {
         _transfer(msg.sender, address(this), amount);
           payable(msg.sender).transfer(sellBackETH);
     }
-
 }

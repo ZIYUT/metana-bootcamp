@@ -429,29 +429,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "from",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "to",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "transaction",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "to",
 						"type": "address"
 					},
@@ -675,11 +652,11 @@
 			]
 		},
 		"ERC20/smartContract.sol": {
-			"keccak256": "0x17ce09b9e7feaa1f4f445153adf75238e6f5ae84a15288c924e64429a315739d",
+			"keccak256": "0x9ccdca320fdee71cd24bdd6d93798ad5f358aad7bd15457c55879b155b63864d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5a287556345ea4872a88a19b5f76568189d2e272949a112694244cbc984e0698",
-				"dweb:/ipfs/QmNcasn3eUdB1vmj7tyxUJ6RvPpvn95AfuHUGbkbgwTirK"
+				"bzz-raw://5f593d99321321443ca9c9f77a12f8002eb56918b18d523b1f8bae1aaf5817f8",
+				"dweb:/ipfs/QmPT4uWekFcFApKBgUor6H3yru7uyutTXWrLvtXEE2obCN"
 			]
 		}
 	},

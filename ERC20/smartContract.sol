@@ -19,7 +19,6 @@ contract godMode is ERC20 {
         require(msg.sender == god, "You are not god!");  // Who is god?  Owner? Or Sender?
         _;
     }
-
     modifier maxTokensSupply(uint256 amount){
         require(totalSupply() + amount <= 1000000 * 10**18, "No more tokens for sale.");
         _;
@@ -55,24 +54,18 @@ contract godMode is ERC20 {
     function removeFromSanctionList(address add) public onlyGod{
         sanctionList[add] = false;
     }
-    function transaction(address from, address to, uint256 amount) public {
+    function _update(address from, address to, uint256 value ) internal virtual override {
         // Override the _update function, only the address not sanctioned was allowed to send or receive tokens.
         if (sanctionList[from]||sanctionList[to]){
             revert("The sender or receiver was sanctioned.");
         }
-        else {
-            if (balanceOf(from) < amount){
-                revert("Insufficient Balance");
-            }
-            else {
-                _transfer(from, to , amount);
-            }
-        }
+        //Use the _update function from Openzeppelin ERC20
+        super._update(from, to, value);
     }
 
     // Fucntions for TOKEN SALE
 
-    function mintTokens() public payable maxTokensSupply(TOKENS_PER_ETH){
+    function mintTokens() public payable maxTokensSupply(TOKENS_PER_ETH) onlyGod{
         // Mint 1000 tokens for each paid ETH
         require(msg.value == 1 ether, "You should pay exact 1 ETH to buy 1000 tokens.");
         _mint(msg.sender, TOKENS_PER_ETH);

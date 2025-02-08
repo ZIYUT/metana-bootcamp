@@ -13,14 +13,10 @@ contract myNFT is ERC721URIStorage, Ownable {
         baseTokenURI = baseURI;
     }
 
-    function mint(address recipient, string memory tokenURI) external onlyOwner {
+    function mintNFT(address recipient, string memory tokenURI) external onlyOwner {
         require(tokenIds < MAX_SUPPLY, "No more NFTs can be minted.");
         tokenIds++;
         _safeMint(recipient, tokenIds);
         _setTokenURI(tokenIds, tokenURI);
     }
-
-    // function _baseURI() internal view override returns (string memory) {
-    //     return baseTokenURI;
-    // }
 }

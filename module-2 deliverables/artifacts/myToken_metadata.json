@@ -268,6 +268,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "mintToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "name",
 				"outputs": [
@@ -578,11 +591,11 @@
 			]
 		},
 		"module-2 deliverables/ERC20_contract.sol": {
-			"keccak256": "0x04d2b44c8ab6a4fc9dbe258ebeea443af78389707ceb656eb9c5f9f0c4bbc32b",
+			"keccak256": "0x00866f4e8f57b1a6b71c701b4b9c460dc0caab843aff7c1256eaa8b0a5947a09",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://219819613ef7ecec452bb2ba42534ea0b61ea55d3fb3301babf06b1a17226c90",
-				"dweb:/ipfs/QmSTNRRb6GbCwLKxqun5GvmfZtVTZU3W1m5fbgnBGZSxQx"
+				"bzz-raw://a0d43be8872d3bfadc9f5c82e9e629d7b105ee51f4af513138a8184fc7d07021",
+				"dweb:/ipfs/QmSnn7oqfv6PbV181AEoY4yJUeSSBs2FcGyh5ebhdCiAtP"
 			]
 		}
 	},

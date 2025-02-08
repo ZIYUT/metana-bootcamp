@@ -183,7 +183,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"module-2 deliverables/receive_contract.sol": "NFTMinter"
+			"module-2 deliverables/ERC721_contract.sol": "NFTMinter"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -381,28 +381,12 @@
 				"dweb:/ipfs/QmVUSvooZKEdEdap619tcJjTLcAuH6QBdZqAzWwnAXZAWJ"
 			]
 		},
-		"module-2 deliverables/ERC20_contract.sol": {
-			"keccak256": "0x4d8e7968db6ce6343c4e53aa2ebb8c0cb57e2924c65cbb6ac6bea157e254fb55",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://82e314ae21ba7079c88b0572cab89a9abe0d482a60b7f19e96f75b7086f88f16",
-				"dweb:/ipfs/QmRSd9Dm2MMjbRLrSY8H4x68vUTwrgG17zuMBL2NdBTGpg"
-			]
-		},
 		"module-2 deliverables/ERC721_contract.sol": {
-			"keccak256": "0xd9cefaaf41ba3b08e3248e7bcf686f0affc6b06c040c5de3a2f89ddbbf8aba5b",
+			"keccak256": "0xe9100cba6c4c68977847ca30e92a357f711f6e411e6602a5101d3ab1d76d3234",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0ae2494782a3b86683e50925ed9a9efed91ca3e371c34764aed1b250576c6e57",
-				"dweb:/ipfs/QmaPbWLMjZH6HxsyCc5hnehtFDKZ9zGkA9DsyPW5S978BT"
-			]
-		},
-		"module-2 deliverables/receive_contract.sol": {
-			"keccak256": "0xcd95189c805ea06a4323cd396efc0148973877f4a0355a912e0dd471c36d00c8",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://750e5790b713ba1410025ad99541ab09e70795666ebad3bc7a50a8ee87d308d0",
-				"dweb:/ipfs/QmXmFKmzGnrPJQGAe5BfaTDGcFU9qhJ3FbZDJkiErgbKFG"
+				"bzz-raw://8628f1450b7e0616ae6bed6c3eb6e9b7e432231e49c97d2e34d4761837937118",
+				"dweb:/ipfs/QmSEeBruodqjGWvrCxRTDP8BFiGXNASPpqsbNjtxLuDYxL"
 			]
 		}
 	},

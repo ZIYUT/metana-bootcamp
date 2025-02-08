@@ -268,6 +268,24 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "add",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "mint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "name",
 				"outputs": [
@@ -515,7 +533,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"module-2 deliverables/ERC721_contract.sol": "myToken"
+			"module-2 deliverables/NFT_staking_contract.sol": "myToken"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -583,14 +601,6 @@
 			"urls": [
 				"bzz-raw://df6f0c459663c9858b6cba2cda1d14a7d05a985bed6d2de72bd8e78c25ee79db",
 				"dweb:/ipfs/QmeTTxZ7qVk9rjEv2R4CpCwdf8UMCcRqDNMvzNxHc3Fnn9"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol": {
-			"keccak256": "0x2659248df25e34000ed214b3dc8da2160bc39874c992b477d9e2b1b3283dc073",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://c345af1b0e7ea28d1216d6a04ab28f5534a5229b9edf9ca3cd0e84950ae58d26",
-				"dweb:/ipfs/QmY63jtSrYpLRe8Gj1ep2vMDCKxGNNG3hnNVKBVnrs2nmA"
 			]
 		},
 		"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
@@ -713,12 +723,12 @@
 				"dweb:/ipfs/QmVUSvooZKEdEdap619tcJjTLcAuH6QBdZqAzWwnAXZAWJ"
 			]
 		},
-		"module-2 deliverables/ERC721_contract.sol": {
-			"keccak256": "0xe9100cba6c4c68977847ca30e92a357f711f6e411e6602a5101d3ab1d76d3234",
+		"module-2 deliverables/NFT_staking_contract.sol": {
+			"keccak256": "0x6e5d878a66636b0c1ee1b6e8ba56a91ceea36d7fd01df5d1ab76aa3f076c1857",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8628f1450b7e0616ae6bed6c3eb6e9b7e432231e49c97d2e34d4761837937118",
-				"dweb:/ipfs/QmSEeBruodqjGWvrCxRTDP8BFiGXNASPpqsbNjtxLuDYxL"
+				"bzz-raw://79701f5ebd95422de0fd93ac8830e69dbe22b045d9c73d3ebd72987c01e02d2b",
+				"dweb:/ipfs/QmexqwRno17i771WzGD6hoNUMyQxvYwFhHinS2H85uaReM"
 			]
 		}
 	},

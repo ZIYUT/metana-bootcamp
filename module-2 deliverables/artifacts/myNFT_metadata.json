@@ -899,11 +899,11 @@
 			]
 		},
 		"module-2 deliverables/ERC721_contract.sol": {
-			"keccak256": "0xe363210fab22bfa81cec61a8e0e6318c3d49b4c53a6d1350cd820b59b3749fe9",
+			"keccak256": "0xd9cefaaf41ba3b08e3248e7bcf686f0affc6b06c040c5de3a2f89ddbbf8aba5b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b7c69c318a61c019e4e9854007fdf59249b4ae873a4ee15ec5fdde04d5aab999",
-				"dweb:/ipfs/Qme8BtW5yMuJEB1xtHjXhGGnnmz9QzrvEa6i9hWTjzmrdy"
+				"bzz-raw://0ae2494782a3b86683e50925ed9a9efed91ca3e371c34764aed1b250576c6e57",
+				"dweb:/ipfs/QmaPbWLMjZH6HxsyCc5hnehtFDKZ9zGkA9DsyPW5S978BT"
 			]
 		}
 	},

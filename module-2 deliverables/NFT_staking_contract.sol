@@ -35,7 +35,7 @@ contract NFTStaker is Ownable, IERC721Receiver {
     mapping(uint256 => address) public  originalOwner;
     mapping(address => uint256) public timestamps;
     uint256 public constant REWARD_RATE = 10 * 10**18;
-    uint256 public constant STAKE_DURATION = 1 minutes; // Use 1 min for testing, change to 24 hours in production
+    uint256 public constant STAKE_DURATION = 24 hours;
 
     struct StakedNFT {
         address owner;
@@ -48,7 +48,10 @@ contract NFTStaker is Ownable, IERC721Receiver {
     }
 
     function depositNFT(uint256 tokenID) external {
-        originalOwner[tokenID] =msg.sender;
+        require(nft.ownerOf(tokenID) == msg.sender, "You are not the NFT owner");
+        require(nft.getApproved(tokenID) == address(this) || nft.isApprovedForAll(msg.sender, address(this)), "Contract not approved");
+
+        originalOwner[tokenID] = msg.sender;
         timestamps[msg.sender] = block.timestamp;
         nft.safeTransferFrom(msg.sender, address(this), tokenID);
     }
@@ -64,6 +67,7 @@ contract NFTStaker is Ownable, IERC721Receiver {
         uint256 timePassed = block.timestamp - timestamps[msg.sender];
         require(timePassed >= STAKE_DURATION, "Not long enough to receive the rewards");
         uint256 rewardToken= (timePassed / STAKE_DURATION) * REWARD_RATE;
+        timestamps[msg.sender] = block.timestamp; 
         token.mint(msg.sender, rewardToken);
     }
 

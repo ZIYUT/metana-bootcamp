@@ -724,11 +724,11 @@
 			]
 		},
 		"module-2 deliverables/NFT_staking_contract.sol": {
-			"keccak256": "0x6e5d878a66636b0c1ee1b6e8ba56a91ceea36d7fd01df5d1ab76aa3f076c1857",
+			"keccak256": "0x7a8996971afb6b3c5635d70c1dbe34f32d17cdab8d1e4d792b708a80ae4e46cb",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://79701f5ebd95422de0fd93ac8830e69dbe22b045d9c73d3ebd72987c01e02d2b",
-				"dweb:/ipfs/QmexqwRno17i771WzGD6hoNUMyQxvYwFhHinS2H85uaReM"
+				"bzz-raw://e021d77c2473c3772124874195858be38bd3ef4f55bf1ccf4e40c7b6cf7c2a8d",
+				"dweb:/ipfs/QmPzGLmC2ZQb6HLsNijxeFRymhuUwuSGEqtvoY4FwfS2XV"
 			]
 		}
 	},

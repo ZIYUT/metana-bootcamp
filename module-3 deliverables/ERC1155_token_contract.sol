@@ -11,21 +11,21 @@ contract ERC1155Token is ERC1155, Ownable {
 
     // Mint function for token 0 (with cooldown)
     function mintToken0() external {
-        require(block.timestamp >= lastMintTime[msg.sender] + 2 seconds, "Cooldown: Try again in 1 minute");
+        require(block.timestamp >= lastMintTime[msg.sender] + 3 seconds, "Cooldown: Try again in 3 seconds");
         lastMintTime[msg.sender] = block.timestamp;
         _mint(msg.sender, 0, 1, ""); // Mint 1 token of type 0
     }
 
     // Mint function for token 1 (with cooldown)
     function mintToken1() external {
-        require(block.timestamp >= lastMintTime[msg.sender] + 2 seconds, "Cooldown: Try again in 1 minute");
+        require(block.timestamp >= lastMintTime[msg.sender] + 3 seconds, "Cooldown: Try again in 3 seconds");
         lastMintTime[msg.sender] = block.timestamp;
         _mint(msg.sender, 1, 1, ""); // Mint 1 token of type 1
     }
 
     // Mint function for token 2 (with cooldown)
     function mintToken2() external {
-        require(block.timestamp >= lastMintTime[msg.sender] + 2 seconds, "Cooldown: Try again in 1 minute");
+        require(block.timestamp >= lastMintTime[msg.sender] + 3 seconds, "Cooldown: Try again in 3 seconds");
         lastMintTime[msg.sender] = block.timestamp;
         _mint(msg.sender, 2, 1, ""); // Mint 1 token of type 2
     }

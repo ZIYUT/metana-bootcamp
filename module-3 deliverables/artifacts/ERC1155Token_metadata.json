@@ -322,24 +322,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "burn",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "address",
 						"name": "account",
 						"type": "address"
@@ -381,19 +363,50 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "mint",
+				"inputs": [],
+				"name": "mintToken0",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "mintToken1",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "mintToken2",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "mintToken3",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "mintToken4",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "mintToken5",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "mintToken6",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -516,6 +529,30 @@
 						"internalType": "bool",
 						"name": "",
 						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "tokenBalanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -839,11 +876,11 @@
 			]
 		},
 		"module-3 deliverables/ERC1155_token_contract.sol": {
-			"keccak256": "0x14cf4f004a29ce3bc11fee719593fc086a049fc711966f5a40f58f5de193a9e7",
+			"keccak256": "0xaaf0e8fe29357c524b5b947c1f37c047d1b2039e9565817ba2341a1e89d4ed9a",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://66a6f93c98003bc03615b90ea345262e81494b80ea6103f9da80ee814725119d",
-				"dweb:/ipfs/QmPNhBpAPUH9SfYTxfanxQ6cbNtAX1bUjSGUA2v97svqo7"
+				"bzz-raw://4f89526e645ccde6f23c0c9ffa9e05ef77d7408f2d20a5c668ac8691e6e951b2",
+				"dweb:/ipfs/Qmd5pvFrH6MtmqbPCcPzzAVPQat41FJVZkhUmx7n8r3nrN"
 			]
 		}
 	},

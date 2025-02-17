@@ -6,6 +6,7 @@
     "@chakra-ui/react": "^3.8.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@ethersproject/providers": "^5.7.2",
     "@rainbow-me/rainbowkit": "^2.2.3",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",

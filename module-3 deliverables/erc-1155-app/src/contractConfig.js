@@ -1,4 +1,3 @@
-// src/contractConfig.js
 export const contractAddress = '0x0799E6c52F06c5d7C0d91f5Ea93Bb98d832e4D1F'; // 部署的合约地址
 
 export const ERC1155_ABI = [

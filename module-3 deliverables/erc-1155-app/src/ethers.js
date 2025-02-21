@@ -1,5 +1,4 @@
-// src/ethers.js
-import { ethers } from 'ethers';
+import { ethers } from "ethers";
 import { contractAddress, ERC1155_ABI } from './contractConfig'; // 引入ABI和合约地址
 
 // 设置Sopholia网络的RPC地址
@@ -29,7 +28,14 @@ export const mintToken = async (tokenId, signer) => {
   const contract = getContract(signer);
   try {
     const tx = await contract[`mintToken${tokenId}`]();
-    await tx.wait(); // 等待交易确认
+    console.log(`Minting Token ${tokenId}...`);
+    const hash = tx.hash;
+    const trx = await tx.getTransaction();
+    // 使用 tx.wait() 来等待交易确认
+    const receipt = await trx.wait(); // 等待交易完成并返回回执（receipt）
+
+    // 交易确认后，输出区块号
+    console.log(`Transaction confirmed in block: ${receipt.blockNumber}`);
     console.log(`Minted Token ${tokenId}`);
     return true;
   } catch (error) {

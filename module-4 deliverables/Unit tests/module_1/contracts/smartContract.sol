@@ -752,7 +752,7 @@ abstract contract Ownable is Context {
 
 // File: ERC20/smartContract.sol
 
-pragma solidity ^0.8.20; // Unify the version to 0.8.20 （use the same version as the openzeppelin)
+pragma solidity ^0.8.20;
 
 contract GodMode is ERC20 {
   address public immutable god;
@@ -761,8 +761,8 @@ contract GodMode is ERC20 {
   uint256 public constant ETH_PER_THOUSAND_TOKENS = 0.5 ether;
 
   constructor(
-    string memory tokenName, // Replace name with tokenName
-    string memory tokenSymbol, // Replace symble with tokenSymbol
+    string memory tokenName,
+    string memory tokenSymbol,
     address godAddress
   ) ERC20(tokenName, tokenSymbol) {
     require(godAddress != address(0), 'Invalid address: zero address');
@@ -850,12 +850,19 @@ contract GodMode is ERC20 {
     payable(god).transfer(myBalance);
   }
 
-  // Functions for PARTIAL REFOUNDS
+  // Functions for PARTIAL REFUNDS
 
   function sellBack(uint256 amount) public {
     uint256 sellBackETH = (amount * ETH_PER_THOUSAND_TOKENS) / TOKENS_PER_ETH;
     require(address(this).balance >= sellBackETH, 'ETH is not enough');
+    require(
+      balanceOf(msg.sender) >= amount,
+      'ERC20: transfer amount exceeds balance'
+    ); // 添加显式余额检查
     _transfer(msg.sender, address(this), amount);
     payable(msg.sender).transfer(sellBackETH);
   }
+
+  // 添加 receive 函数以支持接收 ETH
+  receive() external payable {}
 }

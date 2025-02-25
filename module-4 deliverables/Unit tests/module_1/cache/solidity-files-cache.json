@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/sheldon/Desktop/metana-bootcamp/module-4 deliverables/Unit tests/module_1/contracts/smartContract.sol": {
-      "lastModificationDate": 1740498674709,
-      "contentHash": "f0c3e851c53cc692346398282160ccb5",
+      "lastModificationDate": 1740500515304,
+      "contentHash": "76d5d99b6d3318cac7b52b48caf47b3e",
       "sourceName": "contracts/smartContract.sol",
       "solcConfig": {
         "version": "0.8.28",
@@ -49,42 +49,6 @@
         "IERC20Metadata",
         "IERC721Errors",
         "Ownable"
-      ]
-    },
-    "/Users/sheldon/Desktop/metana-bootcamp/module-4 deliverables/Unit tests/module_1/contracts/Lock.sol": {
-      "lastModificationDate": 1740498781644,
-      "contentHash": "7eee587c347fe6b1de50c96688cb9477",
-      "sourceName": "contracts/Lock.sol",
-      "solcConfig": {
-        "version": "0.8.28",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.28"
-      ],
-      "artifacts": [
-        "Lock"
       ]
     }
   }

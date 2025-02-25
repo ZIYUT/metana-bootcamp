@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for contracts/smartContract.sol</title>
+    <title>Code coverage report for contracts/partialRefund.sol</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,32 +16,32 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> smartContract.sol
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> partialRefund.sol
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>8/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>8/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/3</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/9</span>
+        <span class='fraction'>9/9</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -109,28 +109,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">10×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">6×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -151,33 +151,33 @@ contract GodMode is ERC20 {
   uint256 public constant TOKENS_PER_ETH = 1000 * 10 ** 18;
   uint256 public constant ETH_PER_THOUSAND_TOKENS = 0.5 ether;
 &nbsp;
-<span class="fstat-no" title="function not covered" >  constructor(</span>
+  constructor(
     string memory tokenName,
     string memory tokenSymbol,
     address godAddress
   ) ERC20(tokenName, tokenSymbol) {
-<span class="cstat-no" title="statement not covered" >    require(godAddress != address(0), 'Invalid address: zero address')</span>;
+    require(godAddress != address(0), 'Invalid address: zero address');
     god = godAddress;
   }
 &nbsp;
   // 修改 2: 添加 mint 函数（保持不变，仅注释）
   // 理由: 已提供给 god 用于铸造代币，测试中已调用，无需修改
-<span class="fstat-no" title="function not covered" >  function mint(address recipient, uint256 amount) public {</span>
-<span class="cstat-no" title="statement not covered" >    require(msg.sender == god, 'Only god can mint tokens')</span>;
-<span class="cstat-no" title="statement not covered" >    _mint(recipient, amount)</span>;
+  function mint(address recipient, uint256 amount) public {
+    require(msg.sender == god, 'Only god can mint tokens');
+    _mint(recipient, amount);
   }
 &nbsp;
   // 修改 3: sellBack 函数保持不变，仅注释
   // 理由: 逻辑正确，测试已覆盖所有分支，无需修改
-<span class="fstat-no" title="function not covered" >  function sellBack(uint256 amount) public {</span>
-<span class="cstat-no" title="statement not covered" >    uint256 sellBackETH = (amount * ETH_PER_THOUSAND_TOKENS) / TOKENS_PER_ETH;</span>
-<span class="cstat-no" title="statement not covered" >    require(address(this).balance &gt;= sellBackETH, 'ETH is not enough')</span>;
-<span class="cstat-no" title="statement not covered" >    require(</span>
+  function sellBack(uint256 amount) public {
+    uint256 sellBackETH = (amount * ETH_PER_THOUSAND_TOKENS) / TOKENS_PER_ETH;
+    require(address(this).balance &gt;= sellBackETH, 'ETH is not enough');
+    require(
       balanceOf(msg.sender) &gt;= amount,
       'ERC20: transfer amount exceeds balance'
     );
-<span class="cstat-no" title="statement not covered" >    _transfer(msg.sender, address(this), amount)</span>;
-<span class="cstat-no" title="statement not covered" >    payable(msg.sender).transfer(sellBackETH)</span>;
+    _transfer(msg.sender, address(this), amount);
+    payable(msg.sender).transfer(sellBackETH);
   }
 &nbsp;
   // 修改 4: receive 函数保持不变，仅注释
@@ -190,7 +190,7 @@ contract GodMode is ERC20 {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 26 2025 01:38:50 GMT+0800 (China Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 26 2025 01:40:32 GMT+0800 (China Standard Time)
 </div>
 </div>
 <script src="../prettify.js"></script>

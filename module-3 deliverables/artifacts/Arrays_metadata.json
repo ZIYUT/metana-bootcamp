@@ -1,0 +1,46 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "Collection of functions related to array types.",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"module-3 deliverables/forging_logic_contract_flattened.sol": "Arrays"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"module-3 deliverables/forging_logic_contract_flattened.sol": {
+			"keccak256": "0xe2ad7e173f5ae7f7b0d7ab7079d6910a64fcf6034da0cb0f45fa527008eccd10",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7ca762c911fe9580b1d4b08340a88a5709218b33a2f8265449ed605d29839aa1",
+				"dweb:/ipfs/QmcWESnivbd27DtjPbifQ3kDQ6sVX5EAJLBTHiVZE29jpV"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,8 @@
+{
+  "extends": "solhint:recommended",
+  "rules": {
+    "max-line-length": "off",
+    "quotes": "off",
+    "compiler-version": ["error", "^0.8.20"]
+  }
+}

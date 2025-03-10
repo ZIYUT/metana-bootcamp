@@ -130,16 +130,16 @@ export default function Dashboard() {
 
   return (
     <div className="container" style={{ padding: "20px" }}>
-      <h1>Ethereum Mainnet 实时区块链分析仪表板</h1>
+      <h1>Ethereum Mainnet Real-Time Blockchain Analytics Dashboard</h1>
 
       {/* First chart: ERC20 transfer volume */}
       <div>
-        <h2>ERC20 代币转账量 (Token: {TOKEN_ADDRESS.slice(0, 6)}...)</h2>
+        <h2>ERC20 Transfer volume of USDC</h2>
         <LineChart width={600} height={300} data={blocksData}>
           <XAxis dataKey="blockNumber" />
           <YAxis />
           <CartesianGrid stroke="#eee" />
-          <Line type="monotone" dataKey="erc20TransferVolume" stroke="#8884d8" name="转账量" />
+          <Line type="monotone" dataKey="erc20TransferVolume" stroke="#8884d8" name="Volume" />
           <Tooltip />
           <Legend />
         </LineChart>
@@ -147,7 +147,7 @@ export default function Dashboard() {
 
       {/* Second chart: Base Fee */}
       <div>
-        <h2>每区块 BASEFEE (Gwei)</h2>
+        <h2> BASEFEE of each block (Gwei)</h2>
         <LineChart width={600} height={300} data={blocksData}>
           <XAxis dataKey="blockNumber" />
           <YAxis />
@@ -172,7 +172,7 @@ export default function Dashboard() {
           <XAxis dataKey="blockNumber" />
           <YAxis />
           <CartesianGrid stroke="#eee" />
-          <Line type="monotone" dataKey="gasRatio" stroke="#ffc658" name="Gas 比率" />
+          <Line type="monotone" dataKey="gasRatio" stroke="#ffc658" name="Ratio" />
           <Tooltip />
           <Legend />
         </LineChart>

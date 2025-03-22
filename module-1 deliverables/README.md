@@ -68,6 +68,3 @@ Extends the Token Sale contract with a refund mechanism:
 - Users can buy and sell tokens freely, but they lose Ether over time due to the refund rate being lower than the purchase rate.
 - The maximum supply remains capped at 1,000,000 tokens under all conditions.
 
----
-
-Feel free to clone this repository, explore the code, and suggest improvements! Contributions are welcome.

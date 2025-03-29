@@ -1,4 +1,4 @@
-# Solidity Assignment M8
+# Module-8 deliverables
 
 This repository contains my implementation of two Solidity-based assignments: **Address Hacks** and **Advanced NFT**. These projects showcase smart contract development techniques, security practices, and gas optimization using OpenZeppelin's libraries.
 

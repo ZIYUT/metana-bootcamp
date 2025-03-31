@@ -174,7 +174,4 @@ contract AdvancedNFT is ERC721, Ownable, Multicall {
             safeTransferFrom(msg.sender, _to[i], _tokenIds[i]);
         }
     }
-    function getMsgValue() external payable returns (uint256) {
-        return msg.value;
-    }
 }

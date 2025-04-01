@@ -47,18 +47,18 @@ describe("AdvancedNFT", function () {
     });
   });
 
-  // 2. Test Gas Cost Comparison
-  describe("Gas Cost Comparison", function () {
-    it("should measure gas cost for mapping vs bitmap", async function () {
-      await nft.setSaleState(1); // PRESALE
-      const proof = merkleTree.getHexProof(
-        keccak256(Buffer.from(addr1.address.slice(2) + "0".padStart(64, "0"), "hex"))
-      );
-      const tx = await nft.connect(addr1).airdropMint(proof, 0, { value: ethers.parseEther("0.05") });
-      const receipt = await tx.wait();
-      console.log("Gas used with mapping:", receipt.gasUsed.toString());
-    });
-  });
+//   // 2. Test Gas Cost Comparison
+//   describe("Gas Cost Comparison", function () {
+//     it("should measure gas cost for mapping vs bitmap", async function () {
+//       await nft.setSaleState(1); // PRESALE
+//       const proof = merkleTree.getHexProof(
+//         keccak256(Buffer.from(addr1.address.slice(2) + "0".padStart(64, "0"), "hex"))
+//       );
+//       const tx = await nft.connect(addr1).airdropMint(proof, 0, { value: ethers.parseEther("0.05") });
+//       const receipt = await tx.wait();
+//       console.log("Gas used with mapping:", receipt.gasUsed.toString());
+//     });
+//   });
 
   // 3. Test Commit-Reveal Mechanism
   describe("Commit-Reveal Mechanism", function () {

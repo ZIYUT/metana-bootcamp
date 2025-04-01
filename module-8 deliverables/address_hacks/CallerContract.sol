@@ -38,7 +38,7 @@ contract CallerContract {
         if (size == 0) {
             // If extcodesize is 0, expect the call to fail
             (bool successSelf, ) = address(this).call(
-                abi.encodeWithSelector(this.dummy.selector)
+                abi.encodeWithSelector(this.nothing.selector)
             );
             constructorSelfCallSucceeded = successSelf;
             emit ConstructorSelfCall(successSelf);
@@ -53,14 +53,13 @@ contract CallerContract {
         }
     }
 
-    // Dummy function: An empty function for testing calls
-    function dummy() external {
-        // Empty function
+    function nothing() external {
+
     }
 
     // Check self-call: Attempts to call dummy after deployment
     function checkSelfCall() external {
-        address(this).functionCall(abi.encodeWithSelector(this.dummy.selector));
+        address(this).functionCall(abi.encodeWithSelector(this.nothing.selector));
         // If no revert occurs, the call was successful
     }
 

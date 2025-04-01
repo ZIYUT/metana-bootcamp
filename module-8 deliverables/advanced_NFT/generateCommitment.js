@@ -1,12 +1,9 @@
 const { ethers } = require("ethers");
 
-// 用户地址
-const userAddress = "0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB";
+const userAddress = "0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db";
 
-// 秘密值（uint256 类型，数字）
-const secret = 12345; // 您可以选择任意数字，或者随机生成
+const secret = 1234; // Random secret number
 
-// 生成 _commitment
 const commitment = ethers.keccak256(
   ethers.AbiCoder.defaultAbiCoder().encode(
     ["address", "uint256"],

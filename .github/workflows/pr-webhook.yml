@@ -1,0 +1,46 @@
+name: NEW PR Webhook Notifier
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  send-webhook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get PR diff
+        run: |
+          curl -H "Accept: application/vnd.github.v3.diff" \
+            "${{ github.event.pull_request.url }}" > pr.diff
+
+      - name: Send webhook with PR info and diff
+        env:
+          WEBHOOK_URL: https://pr-watcher.automations-3d6.workers.dev
+        run: |
+          PR_INFO=$(jq -n \
+            --arg title "${{ github.event.pull_request.title }}" \
+            --arg body "${{ github.event.pull_request.body }}" \
+            --arg url "${{ github.event.pull_request.html_url }}" \
+            --arg user "${{ github.event.pull_request.user.login }}" \
+            --arg created_at "${{ github.event.pull_request.created_at }}" \
+            --arg branch "${{ github.event.pull_request.head.ref }}" \
+            --arg base "${{ github.event.pull_request.base.ref }}" \
+            '{
+              title: $title,
+              body: $body,
+              url: $url,
+              user: $user,
+              created_at: $created_at,
+              branch: $branch,
+              base: $base
+            }')
+
+          DIFF=$(cat pr.diff | jq -Rs .)
+
+          curl -X POST "$WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d "{\"pr_info\": $PR_INFO, \"diff\": $DIFF}"

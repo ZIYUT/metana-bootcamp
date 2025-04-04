@@ -47,19 +47,6 @@ describe("AdvancedNFT", function () {
     });
   });
 
-//   // 2. Test Gas Cost Comparison
-//   describe("Gas Cost Comparison", function () {
-//     it("should measure gas cost for mapping vs bitmap", async function () {
-//       await nft.setSaleState(1); // PRESALE
-//       const proof = merkleTree.getHexProof(
-//         keccak256(Buffer.from(addr1.address.slice(2) + "0".padStart(64, "0"), "hex"))
-//       );
-//       const tx = await nft.connect(addr1).airdropMint(proof, 0, { value: ethers.parseEther("0.05") });
-//       const receipt = await tx.wait();
-//       console.log("Gas used with mapping:", receipt.gasUsed.toString());
-//     });
-//   });
-
   // 3. Test Commit-Reveal Mechanism
   describe("Commit-Reveal Mechanism", function () {
     it("should allocate random NFT ID with commit-reveal", async function () {
@@ -171,6 +158,84 @@ describe("AdvancedNFT", function () {
       
       // Updated comparison for ethers.js v6
       expect(balanceAfter > balanceBefore).to.be.true;
+    });
+  });
+
+  describe("Auto State Transition", function () {
+    it("should automatically switch from PRESALE to PUBLIC after 10 mints", async function () {
+      const signers = await ethers.getSigners();
+      const mintingAddresses = signers.slice(2, 12);
+
+      // Create a Merkle tree that includes ALL minting addresses
+      const addressesWithIndices = mintingAddresses.map((signer, index) => 
+        keccak256(Buffer.from(signer.address.slice(2) + index.toString().padStart(64, "0"), "hex"))
+      );
+      const newMerkleTree = new MerkleTree(addressesWithIndices, keccak256, { sortPairs: true });
+      const newMerkleRoot = newMerkleTree.getHexRoot();
+      
+      // Update contract's merkle root with our new one that includes all addresses
+      await nft.setMerkleRoot(newMerkleRoot);     
+      // Set state to PRESALE
+      await nft.setSaleState(1);
+      // Mint 10 NFTs in presale with valid proofs
+      for (let i = 0; i < 10; i++) {
+        const proof = newMerkleTree.getHexProof(addressesWithIndices[i]);
+        
+        await nft.connect(mintingAddresses[i]).airdropMint(proof, i, { 
+          value: ethers.parseEther("0.05") 
+        });
+        if (i < 9) {
+          expect(await nft.saleState()).to.equal(1); // Still PRESALE
+        }
+      }
+      // After 10th mint, should be in PUBLIC state
+      expect(await nft.saleState()).to.equal(2); // PUBLIC = 2
+      expect(await nft.presaleMinted()).to.equal(10);
+    });
+
+    it("should automatically switch to SOLD_OUT after MAX_SUPPLY mints", async function () {
+      const signers = await ethers.getSigners();
+      const AdvancedNFT = await ethers.getContractFactory("AdvancedNFT");
+      const newNft = await AdvancedNFT.deploy(merkleRoot, owner.address);
+      await newNft.setSaleState(2); // Set to PUBLIC state
+      expect(await newNft.saleState()).to.equal(2); // PUBLIC
+      expect(await newNft.totalSupply()).to.equal(0);
+      const uniqueSigners = signers.slice(0, 20);
+      const allMinters = [];
+      for (let i = 0; i < 5; i++) { 
+        for (const signer of uniqueSigners) {
+          const wallet = ethers.Wallet.createRandom().connect(ethers.provider);
+          await signer.sendTransaction({
+            to: wallet.address,
+            value: ethers.parseEther("0.5")
+          });
+          allMinters.push(wallet);
+        }
+      }
+      
+      // Mint all 100 NFTs with unique addresses
+      for (let i = 0; i < 100; i++) {
+        const minter = allMinters[i];
+        const secretInt = 1000 + i;
+        const commitment = ethers.keccak256(
+          ethers.solidityPacked(['address', 'uint256'], [minter.address, secretInt])
+        );
+        await newNft.connect(minter).commit(commitment);
+        
+        // Mine 10 blocks
+        for (let b = 0; b < 10; b++) {
+          await ethers.provider.send("evm_mine", []);
+        }
+        await newNft.connect(minter).reveal(secretInt, { value: ethers.parseEther("0.1") });
+
+        if (i === 98) {
+          expect(await newNft.saleState()).to.equal(2); // Still PUBLIC
+        }
+      }
+      
+      // After all mints, should be SOLD_OUT
+      expect(await newNft.saleState()).to.equal(3); // SOLD_OUT = 3
+      expect(await newNft.totalSupply()).to.equal(100);
     });
   });
 });

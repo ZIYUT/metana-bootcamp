@@ -18,7 +18,9 @@ contract AdvancedNFT is ERC721, Multicall, Ownable {
     mapping(address => bool) public hasMintedMapping; 
 
     // NFT supply and pricing, and address for withdraw
-    uint256 public constant MAX_SUPPLY = 10000;
+    uint256 public constant MAX_SUPPLY = 100; // Changed from 10000 to 100
+    uint256 public constant PRESALE_LIMIT = 10; // New constant for presale limit
+    uint256 public presaleMinted; // Track presale mints separately
     uint256 public totalSupply;
     uint256 public constant PRESALE_PRICE = 0.05 ether;
     uint256 public constant PUBLIC_PRICE = 0.1 ether;
@@ -36,6 +38,7 @@ contract AdvancedNFT is ERC721, Multicall, Ownable {
         addressForWithdraw = _addressForWithdraw;
         saleState = SaleState.INACTIVE;
         totalSupply = 0;
+        presaleMinted = 0;
     }
 
     // Set Merkle root
@@ -81,13 +84,22 @@ contract AdvancedNFT is ERC721, Multicall, Ownable {
         // Generate random token ID based on secret and block hash
         uint256 tokenId = uint256(keccak256(abi.encodePacked(_secret, blockhash(block.number - 1)))) % MAX_SUPPLY;
         while (_ownerOf(tokenId) != address(0)) { 
-            tokenId = (tokenId + 1) % MAX_SUPPLY; // 确保唯一性
+            tokenId = (tokenId + 1) % MAX_SUPPLY;
         }
 
         _mint(msg.sender, tokenId);
         totalSupply++;
-
-        if (totalSupply == MAX_SUPPLY) {
+        
+        // Auto state switching logic
+        if (isPresale) {
+            presaleMinted++;
+            if (presaleMinted >= PRESALE_LIMIT) {
+                saleState = SaleState.PUBLIC;
+                emit StateChanged(SaleState.PUBLIC);
+            }
+        }
+        
+        if (totalSupply >= MAX_SUPPLY) {
             saleState = SaleState.SOLD_OUT;
             emit StateChanged(SaleState.SOLD_OUT);
         }
@@ -112,12 +124,19 @@ contract AdvancedNFT is ERC721, Multicall, Ownable {
 
         uint256 tokenId = totalSupply;
         while (_ownerOf(tokenId) != address(0)) { 
-            tokenId = (tokenId + 1) % MAX_SUPPLY; // 确保唯一性（可选）
+            tokenId = (tokenId + 1) % MAX_SUPPLY;
         }
         _mint(msg.sender, tokenId);
         totalSupply++;
-
-        if (totalSupply == MAX_SUPPLY) {
+        presaleMinted++; // Track presale mints
+        
+        // Auto state switching logic
+        if (presaleMinted >= PRESALE_LIMIT) {
+            saleState = SaleState.PUBLIC;
+            emit StateChanged(SaleState.PUBLIC);
+        }
+        
+        if (totalSupply >= MAX_SUPPLY) {
             saleState = SaleState.SOLD_OUT;
             emit StateChanged(SaleState.SOLD_OUT);
         }

@@ -12,19 +12,19 @@ This bootcamp provided me with hands-on experience and a deep dive into Web3 tec
 - **[Module 1: ERC20 Token Variants](./module-1%20deliverables)**  
   Custom ERC20 tokens with unique features like God-Mode, sanctions, and token sale mechanics.
 
-- **[Module 3: ERC1155 Token Minting and Forging](./module-3%20deliverables)**  
+- **[Module 2: ERC1155 Token Minting and Forging](./module-3%20deliverables)**  
   An ERC1155 token system with a web app for minting and forging tokens on Polygon.
 
-- **[Module 4: Code Cleanup and Testing](./module-4%20deliverables)**  
+- **[Module 3: Code Cleanup and Testing](./module-4%20deliverables)**  
   Refined Solidity code with comprehensive unit tests and advanced testing techniques.
 
-- **[Module 5: ERC721 NFT Variants](./module-5%20deliverables)**  
+- **[Module 4: ERC721 NFT Variants](./module-5%20deliverables)**  
   ERC721 NFTs with OpenSea integration, ERC20-based minting, and staking rewards.
 
-- **[Module 8: Address Hacks and Advanced NFT](./module-8%20deliverables)**  
+- **[Module 5: Address Hacks and Advanced NFT](./module-8%20deliverables)**  
   Security explorations and an advanced NFT with airdrops, random allocation, and multicall.
 
-- **[Module 9: Real-Time Blockchain Analytics Dashboard](./module-9%20deliverables)**  
+- **[Module 8: Real-Time Blockchain Analytics Dashboard](./module-9%20deliverables)**  
   A React-based dashboard tracking Ethereum block metrics and ERC20 transfers in real-time.
 
 ## Notes

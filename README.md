@@ -21,11 +21,13 @@ This bootcamp provided me with hands-on experience and a deep dive into Web3 tec
 - **[Module 4: ERC721 NFT Variants](./module-5%20deliverables)**  
   ERC721 NFTs with OpenSea integration, ERC20-based minting, and staking rewards.
 
-- **[Module 5: Address Hacks and Advanced NFT](./module-8%20deliverables)**  
+- **[Module 5: Real-Time Blockchain Analytics Dashboard](./module-9%20deliverables)**  
+  A React-based dashboard tracking Ethereum block metrics and ERC20 transfers in real-time.
+
+- **[Module 8: Address Hacks and Advanced NFT](./module-8 deliverables)**  
   Security explorations and an advanced NFT with airdrops, random allocation, and multicall.
 
-- **[Module 8: Real-Time Blockchain Analytics Dashboard](./module-9%20deliverables)**  
-  A React-based dashboard tracking Ethereum block metrics and ERC20 transfers in real-time.
+
 
 ## Notes
 - Each module folder contains my project deliverables from the bootcamp.

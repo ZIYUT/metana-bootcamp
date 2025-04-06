@@ -1,25 +1,32 @@
 # Project Directory
 
-This repository contains deliverables for multiple modules, showcasing blockchain development skills including smart contracts, front-end applications, and analytics dashboards. Explore each module below:
+This repository contains my assignments from the **Metana Solidity Bootcamp**, a transformative program that helped me master Ethereum blockchain development. Below, you'll find the deliverables for various modules, showcasing my skills in smart contracts, DApps, and blockchain analytics.
 
-- **[Module 1: ERC20 Token Variants](./module-1%20deliverables/README.md)**  
-  Custom ERC20 tokens with features like God-Mode, sanctions, token sales, and partial refunds.
+## About the Bootcamp
+The **Web3 Solidity Bootcamp** is described on the [Metana website](https://metana.io/) as:  
+*"Most advanced Solidity curriculum on the internet. Web3 Solidity Bootcamp is a 4-month program designed for your transition from Web2 to Web3. Our project-based curriculum will teach you everything about Ethereum Blockchain, DeFi, and smart contracts."*  
+This bootcamp provided me with hands-on experience and a deep dive into Web3 technologies—explore my work below!
 
-- **[Module 3: ERC1155 Token Minting and Forging](./module-3%20deliverables/README.md)**  
-  An ERC1155 token collection with a web app for minting, forging, and trading on Polygon.
+## Modules
 
-- **[Module 4: Code Cleanup and Testing](./module-4%20deliverables/README.md)**  
-  Cleaned-up Solidity code with unit tests, coverage, and mutation testing for prior assignments.
+- **[Module 1: ERC20 Token Variants](./module-1%20deliverables)**  
+  Custom ERC20 tokens with unique features like God-Mode, sanctions, and token sale mechanics.
 
-- **[Module 5: ERC721 NFT Variants](./module-5%20deliverables/README.md)**  
-  ERC721 NFTs with OpenSea integration, ERC20 minting, and staking for rewards.
+- **[Module 3: ERC1155 Token Minting and Forging](./module-3%20deliverables)**  
+  An ERC1155 token system with a web app for minting and forging tokens on Polygon.
 
-- **[Module 8: Address Hacks and Advanced NFT](./module-8%20deliverables/README.md)**  
-  Security-focused contracts with address hack demos and an advanced NFT with airdrops and multicall.
+- **[Module 4: Code Cleanup and Testing](./module-4%20deliverables)**  
+  Refined Solidity code with comprehensive unit tests and advanced testing techniques.
 
-- **[Module 9: Real-Time Blockchain Analytics Dashboard](./module-9%20deliverables/README.md)**  
-  A React-based dashboard visualizing Ethereum block data and ERC20 transfer volumes in real-time.
+- **[Module 5: ERC721 NFT Variants](./module-5%20deliverables)**  
+  ERC721 NFTs with OpenSea integration, ERC20-based minting, and staking rewards.
+
+- **[Module 8: Address Hacks and Advanced NFT](./module-8%20deliverables)**  
+  Security explorations and an advanced NFT with airdrops, random allocation, and multicall.
+
+- **[Module 9: Real-Time Blockchain Analytics Dashboard](./module-9%20deliverables)**  
+  A React-based dashboard tracking Ethereum block metrics and ERC20 transfers in real-time.
 
 ## Notes
-- Each module is self-contained in its respective `module-X deliverables` folder.
-- Click the links above to dive into the details of each project!
+- Each module folder contains my project deliverables from the bootcamp.
+- Click the links above to explore my journey from Web2 to Web3!

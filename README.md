@@ -24,7 +24,7 @@ This bootcamp provided me with hands-on experience and a deep dive into Web3 tec
 - **[Module 5: Real-Time Blockchain Analytics Dashboard](./module-9%20deliverables)**  
   A React-based dashboard tracking Ethereum block metrics and ERC20 transfers in real-time.
 
-- **[Module 8: Address Hacks and Advanced NFT](./module-8 deliverables)**  
+- **[Module 8: Address Hacks and Advanced NFT](./module-9%20deliverables)**  
   Security explorations and an advanced NFT with airdrops, random allocation, and multicall.
 
 

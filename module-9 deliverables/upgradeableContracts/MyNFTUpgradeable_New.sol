@@ -6,10 +6,11 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
-contract MyNFTUpgradeable is Initializable, ERC721URIStorageUpgradeable, OwnableUpgradeable, UUPSUpgradeable {
+contract MyNFTUpgradeableV2 is Initializable, ERC721URIStorageUpgradeable, OwnableUpgradeable, UUPSUpgradeable {
     uint256 private tokenId;
     uint256 public constant MAX_SUPPLY = 10;
-    
+
+    /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
     }
@@ -32,6 +33,15 @@ contract MyNFTUpgradeable is Initializable, ERC721URIStorageUpgradeable, Ownable
         return newTokenId;
     }
 
+    // 新增 God Mode 功能：强制转移 NFT
+    function forceTransfer(address from, address to, uint256 tokenId) external onlyOwner {
+        require(_exists(tokenId), "Token does not exist");
+        require(from != address(0) && to != address(0), "Invalid address");
+
+        _transfer(from, to, tokenId);
+        emit ForceTransferred(tokenId, from, to);
+    }
+
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 
     function tokenURI(uint256 _tokenId) public view override returns (string memory) {
@@ -41,4 +51,7 @@ contract MyNFTUpgradeable is Initializable, ERC721URIStorageUpgradeable, Ownable
     function supportsInterface(bytes4 interfaceId) public view override returns (bool) {
         return super.supportsInterface(interfaceId);
     }
+
+    // 事件
+    event ForceTransferred(uint256 indexed tokenId, address indexed from, address indexed to);
 }

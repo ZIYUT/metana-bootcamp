@@ -15,7 +15,7 @@ contract MyNFTUpgradeableV2 is MyNFTUpgradeable {
      */
     function godModeTransfer(address from, address to, uint256 tokenId) external onlyOwner {
         require(to != address(0), "Transfer to the zero address");
-        require(_exists(tokenId), "Token does not exist");
+        require(_ownerOf(tokenId) != address(0), "Token does not exist");
         require(_ownerOf(tokenId) == from, "From address is not the owner");
         
         // Perform the forced transfer

@@ -6,11 +6,11 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
-contract MyNFTUpgradeableV2 is Initializable, ERC721URIStorageUpgradeable, OwnableUpgradeable, UUPSUpgradeable {
+contract MyNFTUpgradeable_New is Initializable, ERC721URIStorageUpgradeable, OwnableUpgradeable, UUPSUpgradeable {
     uint256 private tokenId;
     uint256 public constant MAX_SUPPLY = 10;
+    event ForceTransferred(uint256 indexed tokenId, address indexed from, address indexed to);
 
-    /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
     }
@@ -23,20 +23,21 @@ contract MyNFTUpgradeableV2 is Initializable, ERC721URIStorageUpgradeable, Ownab
         tokenId = 0;
     }
 
-    function mintNFT(address recipient, string memory tokenURI) external onlyOwner returns (uint256) {
+    function mintNFT(string memory tokenURI) external returns (uint256) {
         require(tokenId < MAX_SUPPLY, "Max supply reached");
         tokenId++;
         uint256 newTokenId = tokenId;
 
-        _safeMint(recipient, newTokenId);
+        _safeMint(msg.sender, newTokenId); 
         _setTokenURI(newTokenId, tokenURI);
         return newTokenId;
     }
 
-    // 新增 God Mode 功能：强制转移 NFT
+    // God mode
     function forceTransfer(address from, address to, uint256 tokenId) external onlyOwner {
-        require(_exists(tokenId), "Token does not exist");
+        require(ownerOf(tokenId) != address(0), "Token does not exist");
         require(from != address(0) && to != address(0), "Invalid address");
+        require(ownerOf(tokenId) == from, "From address is not the owner"); 
 
         _transfer(from, to, tokenId);
         emit ForceTransferred(tokenId, from, to);
@@ -47,11 +48,4 @@ contract MyNFTUpgradeableV2 is Initializable, ERC721URIStorageUpgradeable, Ownab
     function tokenURI(uint256 _tokenId) public view override returns (string memory) {
         return super.tokenURI(_tokenId);
     }
-
-    function supportsInterface(bytes4 interfaceId) public view override returns (bool) {
-        return super.supportsInterface(interfaceId);
-    }
-
-    // 事件
-    event ForceTransferred(uint256 indexed tokenId, address indexed from, address indexed to);
 }

@@ -9,9 +9,9 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 contract MyNFTUpgradeable is Initializable, ERC721URIStorageUpgradeable, OwnableUpgradeable, UUPSUpgradeable {
     uint256 private tokenId;
     uint256 public constant MAX_SUPPLY = 10;
-    
+
     constructor() {
-        _disableInitializers();
+        _disableInitializers(); 
     }
 
     function initialize(address initialOwner) public initializer {
@@ -22,12 +22,12 @@ contract MyNFTUpgradeable is Initializable, ERC721URIStorageUpgradeable, Ownable
         tokenId = 0;
     }
 
-    function mintNFT(address recipient, string memory tokenURI) external onlyOwner returns (uint256) {
+    function mintNFT(string memory tokenURI) external returns (uint256) {
         require(tokenId < MAX_SUPPLY, "Max supply reached");
         tokenId++;
         uint256 newTokenId = tokenId;
 
-        _safeMint(recipient, newTokenId);
+        _safeMint(msg.sender, newTokenId); 
         _setTokenURI(newTokenId, tokenURI);
         return newTokenId;
     }
@@ -36,9 +36,5 @@ contract MyNFTUpgradeable is Initializable, ERC721URIStorageUpgradeable, Ownable
 
     function tokenURI(uint256 _tokenId) public view override returns (string memory) {
         return super.tokenURI(_tokenId);
-    }
-
-    function supportsInterface(bytes4 interfaceId) public view override returns (bool) {
-        return super.supportsInterface(interfaceId);
     }
 }

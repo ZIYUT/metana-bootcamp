@@ -7,6 +7,7 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
 contract MyTokenUpgradeable is Initializable, ERC20Upgradeable, OwnableUpgradeable, UUPSUpgradeable {
+    
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
@@ -14,8 +15,11 @@ contract MyTokenUpgradeable is Initializable, ERC20Upgradeable, OwnableUpgradeab
 
     function initialize(address initialOwner) public initializer {
         __ERC20_init("myToken", "TKN");
-        __Ownable_init(initialOwner);
+        __Ownable_init();  // 移除参数
         __UUPSUpgradeable_init();
+        
+        // 手动设置所有者
+        _transferOwnership(initialOwner);
         
         // Mint initial 10 TKN to contract owner
         _mint(initialOwner, 10 * 10**18);

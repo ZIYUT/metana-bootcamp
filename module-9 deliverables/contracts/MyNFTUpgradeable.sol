@@ -10,6 +10,7 @@ contract MyNFTUpgradeable is Initializable, ERC721URIStorageUpgradeable, Ownable
     uint256 private tokenId;
     uint256 public constant MAX_SUPPLY = 10;
 
+    /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers(); 
     }
@@ -17,18 +18,19 @@ contract MyNFTUpgradeable is Initializable, ERC721URIStorageUpgradeable, Ownable
     function initialize(address initialOwner) public initializer {
         __ERC721_init("MyNFT", "MNFT");
         __ERC721URIStorage_init();
-        __Ownable_init(initialOwner);
+        __Ownable_init();
         __UUPSUpgradeable_init();
+        _transferOwnership(initialOwner);
         tokenId = 0;
     }
 
-    function mintNFT(string memory tokenURI) external returns (uint256) {
+    function mintNFT(string memory _tokenURI) external returns (uint256) {
         require(tokenId < MAX_SUPPLY, "Max supply reached");
         tokenId++;
         uint256 newTokenId = tokenId;
 
         _safeMint(msg.sender, newTokenId); 
-        _setTokenURI(newTokenId, tokenURI);
+        _setTokenURI(newTokenId, _tokenURI);
         return newTokenId;
     }
 

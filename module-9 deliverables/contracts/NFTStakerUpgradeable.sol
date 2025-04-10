@@ -25,13 +25,15 @@ contract NFTStakerUpgradeable is Initializable, OwnableUpgradeable, IERC721Recei
     event RewardsClaimed(address indexed staker, uint256 amount);
     event NFTWithdrawn(uint256 tokenId, address indexed staker);
 
+    /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers(); 
     }
 
     function initialize(address initialOwner, address tokenAddress, address nftAddress) public initializer {
-        __Ownable_init(initialOwner);
+        __Ownable_init();
         __UUPSUpgradeable_init();
+        _transferOwnership(initialOwner);
         token = MyTokenUpgradeable(tokenAddress);
         nft = MyNFTUpgradeable(nftAddress);
     }

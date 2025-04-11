@@ -39,7 +39,8 @@ jobs:
               base: $base
             }')
 
-          DIFF=$(cat pr.diff | jq -Rs .)
+          # Truncate the diff file to avoid "Argument list too long" error
+          DIFF=$(head -c 10000 pr.diff | jq -Rs .)
 
           curl -X POST "$WEBHOOK_URL" \
             -H "Content-Type: application/json" \

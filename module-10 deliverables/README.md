@@ -15,6 +15,6 @@
 
 ## Test Cases for String.sol
 
-charAt("abcdef", 2) → 0x6300 ('c')
-charAt("", 0) → 0x0000 (empty string)
-charAt("george", 10) → 0x0000 (out of bounds)
+- `charAt("abcdef", 2)` → `0x6300` ('c')
+- `charAt("", 0)` → `0x0000` (empty string)
+- `charAt("george", 10)` → `0x0000` (out of bounds)

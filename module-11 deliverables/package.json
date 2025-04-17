@@ -1,0 +1,20 @@
+{
+  "name": "module-11-deliverables",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@noble/hashes": "^1.7.2",
+    "axios": "^1.8.4",
+    "dotenv": "^16.5.0",
+    "ethereumjs-common": "^1.5.2",
+    "ethereumjs-tx": "^2.1.2",
+    "ethers": "^5.7.2"
+  }
+}

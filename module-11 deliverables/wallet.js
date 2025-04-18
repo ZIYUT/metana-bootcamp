@@ -10,7 +10,6 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const RPC_URL = 'https://rpc.sepolia.org';
 const WALLET_ADDRESS = process.env.WALLET_ADDRESS;
 const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
-const TOKEN_ADDRESS = process.env.TOKEN_ADDRESS;
 
 // 创建 readline 接口
 const rl = readline.createInterface({
@@ -58,7 +57,7 @@ async function estimateGas(from, to, data, value = '0x0') {
 }
 
 // 构造并签名交易
-async function createAndSignTx(tokenAddress, recipient, amountWei, privateKey) {
+async function createAndSignTx(recipient, amountWei, privateKey) {
     const nonce = await getNonce(WALLET_ADDRESS);
     const gasPrice = toHex((await axios.post(RPC_URL, {
         jsonrpc: '2.0',
@@ -67,12 +66,11 @@ async function createAndSignTx(tokenAddress, recipient, amountWei, privateKey) {
         id: 1,
     })).data.result);
 
-    // 编码 transferToken(address,address,uint256) 函数调用
-    const functionSignature = '0x1b5457c2'; // keccak256("transferToken(address,address,uint256)")
-    const tokenAddr = stripHexPrefix(tokenAddress).padStart(64, '0');
+    // 编码 transferETH(address,uint256) 函数调用
+    const functionSignature = '0x0f2c8b35'; // keccak256("transferETH(address,uint256)")
     const recipientAddr = stripHexPrefix(recipient).padStart(64, '0');
     const amountHex = toHex(amountWei).slice(2).padStart(64, '0');
-    const data = functionSignature + tokenAddr + recipientAddr + amountHex;
+    const data = functionSignature + recipientAddr + amountHex;
 
     const gasLimit = toHex(await estimateGas(WALLET_ADDRESS, CONTRACT_ADDRESS, data));
 
@@ -116,14 +114,14 @@ async function broadcastTx(signedTx) {
     return response.data.result;
 }
 
-// 主函数：执行代币转移
+// 主函数：执行 ETH 转移
 async function main() {
     try {
         // 验证环境变量
-        if (!PRIVATE_KEY || !WALLET_ADDRESS || !CONTRACT_ADDRESS || !TOKEN_ADDRESS) {
+        if (!PRIVATE_KEY || !WALLET_ADDRESS || !CONTRACT_ADDRESS) {
             throw new Error('Missing environment variables. Please check .env file.');
         }
-        if (!isValidAddress(WALLET_ADDRESS) || !isValidAddress(CONTRACT_ADDRESS) || !isValidAddress(TOKEN_ADDRESS)) {
+        if (!isValidAddress(WALLET_ADDRESS) || !isValidAddress(CONTRACT_ADDRESS)) {
             throw new Error('Invalid address format in environment variables.');
         }
 
@@ -139,9 +137,9 @@ async function main() {
             throw new Error('Invalid recipient address.');
         }
 
-        const amount = BigInt('1000000000000000000'); // 1 代币（假设 18 位小数）
+        const amount = BigInt('10000000000000000'); // 0.01 ETH
         console.log('创建并签名交易...');
-        const signedTx = await createAndSignTx(TOKEN_ADDRESS, recipient, amount, PRIVATE_KEY);
+        const signedTx = await createAndSignTx(recipient, amount, PRIVATE_KEY);
         console.log('广播交易...');
         const txHash = await broadcastTx(signedTx);
         console.log('交易哈希:', txHash);
@@ -156,8 +154,8 @@ async function main() {
 main();
 
 // 运行说明：
-// 1. 创建 .env 文件，添加 PRIVATE_KEY、WALLET_ADDRESS、CONTRACT_ADDRESS、TOKEN_ADDRESS。
+// 1. 创建 .env 文件，添加 PRIVATE_KEY、WALLET_ADDRESS、CONTRACT_ADDRESS。
 // 2. 安装依赖：npm install dotenv axios @noble/hashes ethereumjs-tx ethereumjs-common
 // 3. 运行：node wallet.js
 // 4. 按提示输入接收者地址。
-// 5. 确保 WALLET_ADDRESS 有测试 ETH，CONTRACT_ADDRESS 有代币。
+// 5. 确保 WALLET_ADDRESS 有测试 ETH，CONTRACT_ADDRESS 有 ETH。

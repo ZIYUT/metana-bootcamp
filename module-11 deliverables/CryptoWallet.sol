@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Wallet.sol
 pragma solidity ^0.8.0;
 
-contract BasicWallet {
+contract CryptoWallet {
 
     address public owner;
 
@@ -14,10 +13,6 @@ contract BasicWallet {
     }
 
     receive() external payable {
-        emit Deposit(msg.sender, msg.value);
-    }
-
-    function deposit() external payable {
         emit Deposit(msg.sender, msg.value);
     }
 

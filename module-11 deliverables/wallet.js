@@ -110,13 +110,9 @@ async function createAndSignTx(recipient, amountWei, privateKey) {
         const amountHex = toHex(amountWei).slice(2).padStart(64, '0');
         const data = functionSignature + recipientAddr + amountHex;
         
-        // 估算 gas 限制
-        const gas = await estimateGas(WALLET_ADDRESS, CONTRACT_ADDRESS, data);
-        if (isNaN(gas)) {
-            throw new Error('估算 gas 返回了 NaN, 请检查合约地址是否正确');
-        }
-        const gasLimit = toHex(gas);
-        console.log('估算的 gasLimit:', gasLimit);
+        // 使用硬编码的 gas 限制
+        const gasLimit = toHex(300000); // 使用足够高的值，确保交易不会因 gas 不足而失败
+        console.log('使用硬编码的 gasLimit:', gasLimit);
 
         // 交易参数
         const txParams = {
@@ -187,7 +183,23 @@ async function main() {
             throw new Error('Invalid recipient address.');
         }
 
-        const amount = BigInt('10000000000000000'); // 0.01 ETH
+        // 提示用户输入金额
+        const amountETH = await new Promise((resolve) => {
+            rl.question('请输入转账金额 (ETH): ', (answer) => {
+                resolve(answer.trim());
+            });
+        });
+
+        // 验证输入的金额是否为有效数字
+        const amountFloat = parseFloat(amountETH);
+        if (isNaN(amountFloat) || amountFloat <= 0) {
+            throw new Error('无效的金额。请输入大于0的数字。');
+        }
+
+        // 转换为Wei (1 ETH = 10^18 Wei)
+        const amount = BigInt(Math.floor(amountFloat * 1e18));
+        
+        console.log(`转账金额: ${amountFloat} ETH (${amount} Wei)`);
         console.log('创建并签名交易...');
         const signedTx = await createAndSignTx(recipient, amount, PRIVATE_KEY);
         console.log('广播交易...');
@@ -209,5 +221,5 @@ main();
 // 3. 部署 Wallet.sol 到 Sepolia，获取 CONTRACT_ADDRESS。
 // 4. 向 CONTRACT_ADDRESS 转入测试 ETH。
 // 5. 运行：node wallet.js
-// 6. 按提示输入接收者地址。
+// 6. 按提示输入接收者地址和转账金额。
 // 7. 确保 WALLET_ADDRESS 有测试 ETH，CONTRACT_ADDRESS 有 ETH。

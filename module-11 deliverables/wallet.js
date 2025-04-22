@@ -17,13 +17,12 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-// Helper function: Convert value to hexadecimal
+// Convert value to hexadecimal
 function toHex(value) {
-    // If already a BigInt type, use directly
     if (typeof value === 'bigint') {
         return '0x' + value.toString(16);
     }
-    
+
     // Check validity for numbers or strings
     if (value === undefined || value === null || (typeof value !== 'bigint' && isNaN(value))) {
         console.error('toHex received invalid value:', value);
@@ -34,7 +33,7 @@ function toHex(value) {
     return '0x' + BigInt(value).toString(16);
 }
 
-// Helper function: Remove '0x' prefix
+// Remove '0x' prefix
 function stripHexPrefix(str) {
     return str.startsWith('0x') ? str.slice(2) : str;
 }
@@ -160,7 +159,6 @@ async function broadcastTx(signedTx) {
     return response.data.result;
 }
 
-// Main function: Execute ETH transfer
 async function main() {
     try {
         // Validate environment variables
@@ -214,12 +212,3 @@ async function main() {
 
 // Run script
 main();
-
-// Usage instructions:
-// 1. Create .env file with PRIVATE_KEY, WALLET_ADDRESS, CONTRACT_ADDRESS
-// 2. Install dependencies: npm install dotenv axios @noble/hashes ethereumjs-tx ethereumjs-common
-// 3. Deploy CryptoWallet.sol to Sepolia, get CONTRACT_ADDRESS
-// 4. Send test ETH to CONTRACT_ADDRESS
-// 5. Run: node wallet.js
-// 6. Follow prompts for recipient address and transfer amount
-// 7. Ensure WALLET_ADDRESS has test ETH, CONTRACT_ADDRESS has ETH

@@ -9,7 +9,7 @@ This wallet implementation allows users to transfer ETH from a smart contract to
 1. **Smart Contract** (`CryptoWallet.sol`): Stores ETH and provides controlled access to funds
 2. **Client Application** (`wallet.js`): Interacts with the blockchain to create and submit transactions
 
-The deployed contract can be viewed at: [0x343682F7785E5309a3B59f513fB2F5639b7eE4A7](https://testnet.routescan.io/address/0x343682F7785E5309a3B59f513fB2F5639b7eE4A7)
+The deployed contract can be viewed at: [0x343682F7785E5309a3B59f513fB2F5639b7eE4A7](https://sepolia.etherscan.io/address/0x343682F7785E5309a3B59f513fB2F5639b7eE4A7#code)
 
 ## Features
 

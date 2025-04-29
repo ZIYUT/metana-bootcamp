@@ -119,22 +119,15 @@ contract FreeRiderChallenge is Test {
         assertTrue(nft.isApprovedForAll(address(recoveryManager), recoveryManagerOwner));
         assertEq(address(recoveryManager).balance, BOUNTY);
     }
-
-    /**
-     * CODE YOUR SOLUTION HERE
-     */
     function test_freeRider() public checkSolvedByPlayer {
-        // 部署攻击者合约
         FreeRiderAttacker attacker = new FreeRiderAttacker(
-            payable(address(weth)),            // 转换为payable
-            payable(address(marketplace)),     // 转换为payable
+            payable(address(weth)),            
+            payable(address(marketplace)),   
             address(nft),
             address(recoveryManager),
             player,
             address(uniswapPair)
         );
-        
-        // 发起攻击
         attacker.attack();
     }
 

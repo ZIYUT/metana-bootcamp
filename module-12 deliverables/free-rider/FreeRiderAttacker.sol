@@ -60,7 +60,6 @@ contract FreeRiderAttacker is IERC721Receiver {
         
         // Trasfer NFT to recoveryManager
         for(uint i = 0; i < 6; i++) {
-            // 添加player作为回调数据，这样recovery manager可以知道谁救了NFTs
             nft.safeTransferFrom(address(this), recoveryManager, i, abi.encode(player));
         }
         

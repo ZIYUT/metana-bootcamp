@@ -1,6 +1,6 @@
-# Basic Crypto Wallet Implementation
+# ETH Crypto Wallet Implementation
 
-This project implements a basic cryptocurrency wallet from scratch without using existing wallet libraries. It demonstrates direct interaction with the Ethereum blockchain by manually handling account nonce, gas estimation, and raw transaction creation.
+This project implements a basic Ethereum wallet from scratch without using existing wallet libraries. It demonstrates direct interaction with the Ethereum blockchain by manually handling account nonce, gas estimation, and raw transaction creation.
 
 ## Overview
 
